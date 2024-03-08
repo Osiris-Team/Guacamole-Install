@@ -43,14 +43,6 @@ if ! command -v sudo &> /dev/null; then
     exit 1
 fi
 
-# Make sure the user running setup is a member of the sudo group
-if ! [[ $(id -nG "$USER" 2>/dev/null | egrep "sudo" | wc -l) -gt 0 ]]; then
-    echo
-    echo -e "${LRED}The current user (${USER}) must be a member of the 'sudo' group. Run: sudo usermod -aG sudo ${USER}" 1>&2
-    echo -e ${NC}
-    exit 1
-fi
-
 # Check to see if any previous version of build/install files exist, if so stop and check to be safe.
 if [[ "$(find . -maxdepth 1 \( -name 'guacamole-*' -o -name 'mysql-connector-j-*' \))" != "" ]]; then
     echo
