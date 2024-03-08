@@ -36,14 +36,6 @@ LGREEN='\033[0;92m'
 LYELLOW='\033[0;93m'
 NC='\033[0m' #No Colour
 
-# Make sure the user is NOT running this script as root
-if [[ $EUID -eq 0 ]]; then
-    echo
-    echo -e "${LRED}This script must NOT be run as root, it will prompt for sudo when needed." 1>&2
-    echo -e ${NC}
-    exit 1
-fi
-
 # Check if sudo is installed. (Debian does not always include sudo by default.)
 if ! command -v sudo &> /dev/null; then
     echo "${LRED}Sudo is not installed. Please install sudo."
